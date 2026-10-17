@@ -3,7 +3,7 @@
 ```
 Data engineer kurs je zamisljen da svojim polaznicima predstavi data engineering
 kroz stvarne projekte koji koriste realne skupove podataka.
-Tokom programa obradjuje se sledece
+Tokom programa obradjuje se sledece:
 ```
 - Git i Github za verzionisanje
 - SQL sa relacionim bazama podataka
