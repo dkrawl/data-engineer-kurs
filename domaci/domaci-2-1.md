@@ -57,10 +57,10 @@ poluvremenu? Ko je igrao, rezultat na poluvremenu i
 rezultat na kraju?
 
 Resenje:
-    igrali: Northport United i Newbury Forest
-    rezultat na poluvremenu: 1-0
-    rezultat na kraju: 6-3
-    broj golova u drugom poluvremenu: 8
+- igrali: Northport United i Newbury Forest
+- rezultat na poluvremenu: 1-0
+- rezultat na kraju: 6-3
+- broj golova u drugom poluvremenu: 8
 
 ```
 select
