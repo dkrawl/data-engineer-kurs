@@ -25,7 +25,7 @@ select
     home_team,
     away_team,
     kickoff_ts,
-    coalesce(referee_name, 'Uknown') as referee_name
+    coalesce(referee_name, 'Unknown') as referee_name
 from matches_flat
 limit 20;
 ```
