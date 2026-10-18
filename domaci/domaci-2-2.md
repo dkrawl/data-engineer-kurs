@@ -130,7 +130,7 @@ and time(kickoff_ts) between '18:00' and '21:00';
 ```
 
 9. Prebrojte utakmice odigrane u martu, aprilu ili maju
-2025. godine čiji naslov sadrži reč `win`, bez obzira na
+2025 godine čiji naslov sadrži reč `win`, bez obzira na
 veličinu slova.
 
 Resenje:
