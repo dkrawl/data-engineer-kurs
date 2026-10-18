@@ -146,4 +146,3 @@ from (
     and season = '2024/25' and match_report ilike '%win%'
 ) as m;
 ```
-

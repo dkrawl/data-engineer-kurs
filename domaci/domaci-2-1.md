@@ -119,7 +119,8 @@ select
     time(kickoff_ts) as match_time
 from matches_flat
 where season = '2024/25'
-order by kickoff_ts asc;
+order by kickoff_ts asc
+limit 3;
 ```
 
 8. Prikažite sve utakmice u kojima je prvi gol dao Sean
