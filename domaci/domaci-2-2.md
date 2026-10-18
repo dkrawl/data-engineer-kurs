@@ -100,3 +100,50 @@ from (
 ) as m;
 ```
 
+7. Pronađite strelce prvog gola čije ime počinje slovom `A`
+ili sadrži crticu. Prikažite samo različita imena.
+
+Resenje:
+
+```
+select distinct
+    first_goal_scorer
+from matches_flat
+where first_goal_scorer like 'A%'
+or first_goal_scorer like '%-%';
+```
+
+8. Prikažite utakmice sezone `2024/25` koje su počele
+između 18:00 i 21:00, uključujući obe granice. Prikažite
+vreme početka i nazive timova.
+
+Resenje:
+
+```
+select
+    home_team,
+    away_team,
+    time(kickoff_ts)
+from matches_flat
+where season = '2024/25'
+and time(kickoff_ts) between '18:00' and '21:00';
+```
+
+9. Prebrojte utakmice odigrane u martu, aprilu ili maju
+2025. godine čiji naslov sadrži reč `win`, bez obzira na
+veličinu slova.
+
+Resenje:
+
+```
+select
+    count(*) as matches
+from (
+    select
+        match_id
+    from matches_flat
+    where month(kickoff_ts) in (3, 4, 5)
+    and season = '2024/25' and match_report ilike '%win%'
+) as m;
+```
+
