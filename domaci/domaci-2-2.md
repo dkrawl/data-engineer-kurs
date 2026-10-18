@@ -130,3 +130,99 @@ where month(kickoff_ts) in (3, 4, 5)
 and season = '2024/25'
 and match_report ilike '%win%';
 ```
+
+Dodatni Zadaci (Opciono)
+
+1. Prebrojte utakmice za koje nisu evidentirani ni sudija ni poseta.
+
+Resenje: 0.
+
+```
+select
+    count(*) as matches
+from matches_flat
+where referee_name is null
+and attendance is null;
+```
+
+2. Prikažite sve utakmice odigrane između 1. i 31. marta 2025.
+godine, uključujući oba datuma. Rezultate sortirajte po datumu
+odigravanja.
+
+Resenje:
+
+```
+select
+    home_team,
+    away_team,
+    kickoff_ts
+from matches_flat
+where kickoff_ts >= '2025-03-01'
+and kickoff_ts < '2025-04-01'
+order by kickoff_ts asc;
+```
+
+3. Koliko je utakmica odigrano u periodu od 20. decembra 2024.
+do 10. januara 2025. godine, uključujući oba datuma?
+
+Resenje: 51.
+
+```
+select
+    count(*) as matches
+from matches_flat
+where kickoff_ts >= '2024-12-20 00:00:00'
+and kickoff_ts < '2025-01-11 00:00:00';
+```
+
+4. Napravite kolonu attendance_status koja prikazuje broj
+gledalaca ako je poseta evidentirana, a tekst Unknown ako
+podatak o poseti nedostaje. Prikažite datum utakmice, domaći
+tim, gostujući tim i novu kolonu.
+
+Resenje:
+
+```
+select
+    kickoff_ts,
+    home_team,
+    away_team,
+    coalesce(cast(attendance as string), 'Unknown') as attendance_status
+from matches_flat;
+```
+
+5. Prikažite utakmice odigrane u periodu od 1. do 30. aprila 2025.
+godine kod kojih je postignuto između 2 i 4 gola ukupno,
+uključujući obe granice. Rezultate sortirajte po datumu.
+
+Resenje:
+
+```
+select
+    home_team,
+    away_team,
+    kickoff_ts
+from matches_flat
+where kickoff_ts >= '2025-04-01 00:00:00'
+and kickoff_ts < '2025-05-01 00:00:00'
+and (home_goals + away_goals) between 2 and 4
+order by kickoff_ts asc;
+```
+
+6.Pronađite utakmice kod kojih je rezultat na poluvremenu bio
+nerešen, ali je konačni rezultat bio različit. Prikažite datum, timove,
+rezultat na poluvremenu i konačni rezultat.
+
+Resenje:
+
+```
+select
+    home_team,
+    away_team,
+    kickoff_ts,
+    concat(home_goals_ht, '-', away_goals_ht) as half_time,
+    concat(home_goals, '-', away_goals) as full_time
+from matches_flat
+where home_goals_ht = away_goals_ht
+and home_goals <> away_goals;
+```
