@@ -56,16 +56,7 @@ select
     away_team,
     date(kickoff_ts)
 from matches_flat
-where kickoff_ts >= '2025-01-01' and kickoff_ts <= '2025-01-15';
-```
-
-```
-select
-    home_team,
-    away_team,
-    date(kickoff_ts)
-from matches_flat
-where kickoff_ts between '2025-01-01' and '2025-01-15';
+where kickoff_ts >= '2025-01-01' and kickoff_ts < '2025-01-16';
 ```
 
 5. Prebrojte utakmice odigrane petkom. Prikažite datum i
@@ -91,13 +82,9 @@ Resenje: 188.
 ```
 select
     count(*) as matches
-from (
-    select
-        match_id
-    from matches_flat
-    where season = '2024/25'
-    and attendance between 20000 and 35000
-) as m;
+from matches_flat
+where season = '2024/25'
+and attendance between 20000 and 35000;
 ```
 
 7. Pronađite strelce prvog gola čije ime počinje slovom `A`
@@ -138,11 +125,8 @@ Resenje:
 ```
 select
     count(*) as matches
-from (
-    select
-        match_id
-    from matches_flat
-    where month(kickoff_ts) in (3, 4, 5)
-    and season = '2024/25' and match_report ilike '%win%'
-) as m;
+from matches_flat
+where month(kickoff_ts) in (3, 4, 5)
+and season = '2024/25'
+and match_report ilike '%win%';
 ```
