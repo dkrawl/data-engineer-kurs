@@ -26,13 +26,9 @@ Resenje: 15.
 
 ```
 select
-    count(*) as referees
-from (
-    select distinct
-        referee_name
-    from matches_flat
-    where home_team = 'Riverton Athletic'
-) as r;
+    count(distinct referee_name) as referees
+from matches_flat
+where home_team = 'Riverton Athletic';
 ```
 
 3. U koliko utakmica je gost vodio na poluvremenu, a
@@ -43,13 +39,9 @@ Resenje: 15.
 ```
 select
     count(*) as matches
-from (
-    select
-        match_id
-    from matches_flat
-    where home_goals_ht < away_goals_ht
-    and home_goals > away_goals
-) as m;
+from matches_flat
+where home_goals_ht < away_goals_ht
+and home_goals > away_goals;
 ```
 
 4. U kojoj utakmici je palo najviše golova u drugom
@@ -82,13 +74,9 @@ Resenje: 25
 ```
 select
     count(*) as matches
-from (
-    select
-        match_id
-    from matches_flat
-    where season = '2023/24'
-    and (weather = 'snow' or weather = 'fog')
-) as m;
+from matches_flat
+where season = '2023/24'
+and weather in ('snow', 'fog');
 ```
 
 6. Prikažite sve utakmice gradskog derbija između
@@ -98,7 +86,7 @@ meču?
 
 Resenje:
 - mec: Northport City - Northport United, datum 2023-11-11, FT 0-1: pobedio Northport United u gostima
-- mec: Northport City - Norhtport United, datum 2024-09-21, FT 3-1: pobedio Northport City kod kuce
+- mec: Northport City - Northport United, datum 2024-09-21, FT 3-1: pobedio Northport City kod kuce
 - mec: Northport United - Northport City, datum 2025-02-01, FT 2-1: pobedio Northport United kod kuce
 
 ```
