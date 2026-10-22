@@ -184,7 +184,7 @@ Resenje:
 select
     m.season,
     t.team_name,
-    count(*) `iskljucenja`
+    count(*) `Iskljucenja`
 from matches m
 inner join match_events e
     on m.match_id = e.match_id
