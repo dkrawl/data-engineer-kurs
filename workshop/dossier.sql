@@ -257,7 +257,7 @@ where m.season = '2024/25';
 
 
 -- 3. Стрелци: три најбоља стрелца клуба и најбољи асистент.
---
+
 -- Tri najbolja strelca:
 
 with club as (
@@ -336,7 +336,6 @@ left join match_events e
     and e.event_type in ('yellow_card', 'second_yellow', 'red_card')
 where m.season = '2024/25'
 group by c.team_name;
-```
 
 -- Prosek kartona po  utakmici za celu ligu:
 
