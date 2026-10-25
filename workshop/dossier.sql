@@ -462,7 +462,7 @@ from club c
 inner join matches m
     on c.team_id = m.home_team_id
     and m.season = '2024/25'
-inner join stadiums s
+left join stadiums s
     on s.stadium_id = m.stadium_id
 )
 select
