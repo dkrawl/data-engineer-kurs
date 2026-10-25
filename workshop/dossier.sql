@@ -277,6 +277,7 @@ inner join matches m
 where e.event_type in ('goal', 'penalty_goal')
     and m.season = '2024/25'
 group by
+	p.player_id,
     p.first_name,
     p.last_name
 order by `broj golova` desc
@@ -301,6 +302,7 @@ inner join matches m
 where e.event_type in ('goal', 'penalty_goal')
     and m.season = '2024/25'
 group by
+	p.player_id,
     p.first_name,
     p.last_name
 order by `broj asistencija` desc
