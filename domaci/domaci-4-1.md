@@ -6,7 +6,7 @@ Resenje:
 
 ```
 select
-    count(*) as `broj redova`
+    count(*) as row_cnt
 from matches m
 join player_match_stats s
 where m.season = '2024/25';
@@ -37,7 +37,7 @@ Resenje: 35.
 select
     s.player_id,
     m.season,
-    count(distinct s.team_id) as club_ct
+    count(distinct s.team_id) as club_cnt
 from matches m
 join player_match_stats s
     on m.match_id = s.match_id
@@ -63,7 +63,7 @@ left join match_events e
     and e.event_type in ('yellow_card', 'second_yellow', 'red_card')
 group by m.match_id
 ),
-averages as (
+avgs as (
     select
         match_id,
         cards,
@@ -72,7 +72,7 @@ averages as (
 )
 select
     count(*) as above_avg
-from averages
+from avgs
 where cards > avg_cards;
 ```
 
@@ -94,7 +94,7 @@ where m.season = '2024/25'
 group by s.player_id
 having count(distinct m.match_id) > 10
 )
-select count(*) as player_count
+select count(*) as player_cnt
 from players;
 ```
 
